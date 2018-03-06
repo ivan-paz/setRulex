@@ -119,7 +119,7 @@ def deleteRedundant( rules ):
 
 
 # Search patterns UNIFYED version 25 oct 2017
-def search_patterns(presets_current_class, rules_current_class, presets_other_classes, d, delete_redundant_every_iteration):
+def search_patterns(presets_current_class, rules_current_class, presets_other_classes, d, delete_redundant_every_iteration, MEMORYRules):
     print('Removing redundant under completion of iterations :  ')
     #if not rules_current_class: #Commented 20 NOV
     #    rules_current_class.append( preset_into_rule(presets_current_class[0]) ) #Commented 20 NOV
@@ -138,6 +138,10 @@ def search_patterns(presets_current_class, rules_current_class, presets_other_cl
         if delete_redundant_every_iteration:
             deleteRedundant(rules_current_class)
     if not delete_redundant_every_iteration:
+        for r in rules_current_class:
+            if r!=None:
+                MEMORYRules.append(r)
         deleteRedundant(rules_current_class)
-    return rules_current_class
+
+    return [rules_current_class,MEMORYRules]
 

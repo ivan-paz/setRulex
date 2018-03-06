@@ -1,5 +1,6 @@
-#from rulex_for_class import search_patterns_delete_redundant
-from rulex_for_class import search_patterns
+from searchPatterns import search_patterns
+from writeReadjson import read
+from writeReadjson import write
 
 def dictionary_of_categories(Presets, Rules):
     dictionary_of_classes = dict()
@@ -34,7 +35,7 @@ def separate_presets_and_rules_other_categories(key,dictionary_of_classes):
 
 
 #---    deleting redundant rules after each iteration ----------------
-def rulex(Presets, Rules, d, delete_redundant_every_iteration=True):
+def rulex(Presets, Rules, d, delete_redundant_every_iteration, MEMORYRules):
     final_rules = []
     dictionary_of_classes = dictionary_of_categories(Presets,Rules)
     print(dictionary_of_classes)
@@ -46,31 +47,45 @@ def rulex(Presets, Rules, d, delete_redundant_every_iteration=True):
         #    rules = search_patterns(presets_current_class,rules_current_class,presets_other_classes, d)
         #else:
         #    rules = search_patterns_delete_redundant(presets_current_class,rules_current_class,presets_other_classes, d)
-        rules = search_patterns(presets_current_class,rules_current_class,presets_other_classes,d,delete_redundant_every_iteration)
+        [rules,MEMORYRules] = search_patterns(presets_current_class,rules_current_class,presets_other_classes,d,delete_redundant_every_iteration, MEMORYRules)
         for r in rules:
             if r != None:
                 final_rules.append(r)
     print('Final Rules', final_rules)
-    return final_rules
+    return [final_rules,MEMORYRules]
 
 """
 ......................................................................
 rulex maximum compression function
 rewritten as setRulex function
 ......................................................................
-
 """
 
-def rulexMaxCompress(Presets,Rules,d,delete_every_iteration):
+def setRulex(Presets,Rules,d,delete_every_iteration):
+    MEMORYpresets = read('MEMORYpresets.json');print('MEMORYpresets : ',MEMORYpresets)
+    MEMORYRules = read('MEMORYRules.json');print('MEMORYRules : ',MEMORYRules)
+    
+    if Rules!=[]:
+        [Rules.append(r) for r in MEMORYRules] 
+    else:
+        Rules = MEMORYRules
+
     previousRules = []
-    rules = rulex(Presets,Rules,d,delete_every_iteration)
+    [rules,MEMORYRules] = rulex(Presets,Rules,d,delete_every_iteration,  MEMORYRules)
     cont = 0
     while rules != previousRules:
         cont +=1
         print('rules != previousRules',cont)
         previousRules = rules
-        rules = rulex(Presets, previousRules, d, delete_every_iteration)
+        [rules,MEMORYRules] = rulex(Presets, previousRules, d, delete_every_iteration, MEMORYRules)
     print('final set of rules: ',rules)
+    TEMPORAL=[]
+    for r in MEMORYRules:
+        if r not in TEMPORAL:
+            TEMPORAL.append(r)
+    MEMORYRules = TEMPORAL 
+    #write('MEMORYRules.json', MEMORYRules) #----------------------
+    print('memory rules :',   MEMORYRules)
     return rules
 
 Rules = []
@@ -84,10 +99,9 @@ Presets = [[1,2,'*'],[2,2,'*'],[1,3,'*']]
 #        [7,4,'i']
 #        ]
 print('The Presets :  ', Presets)
-rules = rulexMaxCompress(Presets, Rules, 1, False)
+rules = setRulex(Presets, Rules, 1, False)
 
-print('...........................................')
-[print(x) for x in rules]
+print('.............   the end .........................')
 
 
 
