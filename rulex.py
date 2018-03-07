@@ -1,7 +1,8 @@
 from searchPatterns import search_patterns
 from writeReadjson import read
 from writeReadjson import write
-
+from writeReadjson import clean
+from writeReadjson import writePresets
 def dictionary_of_categories(Presets, Rules):
     dictionary_of_classes = dict()
     for preset in Presets:
@@ -32,9 +33,6 @@ def separate_presets_and_rules_other_categories(key,dictionary_of_classes):
             rules_current_class = dictionary_of_classes[key][1]
     return [presets_other_classes, presets_current_class, rules_current_class]
 #-----------------------------------------------------------------------------
-
-
-#---    deleting redundant rules after each iteration ----------------
 def rulex(Presets, Rules, d, delete_redundant_every_iteration, MEMORYRules):
     final_rules = []
     dictionary_of_classes = dictionary_of_categories(Presets,Rules)
@@ -43,16 +41,12 @@ def rulex(Presets, Rules, d, delete_redundant_every_iteration, MEMORYRules):
         [presets_other_classes,presets_current_class,rules_current_class] = separate_presets_and_rules_other_categories(key,dictionary_of_classes)
         print('key:',key, ';', 'presets other classes : ', presets_other_classes)
         print('search_patterns function')
-        #if delete_redundant_every_iteration == False:
-        #    rules = search_patterns(presets_current_class,rules_current_class,presets_other_classes, d)
-        #else:
-        #    rules = search_patterns_delete_redundant(presets_current_class,rules_current_class,presets_other_classes, d)
         [rules,MEMORYRules] = search_patterns(presets_current_class,rules_current_class,presets_other_classes,d,delete_redundant_every_iteration, MEMORYRules)
         for r in rules:
             if r != None:
                 final_rules.append(r)
-    print('Final Rules', final_rules)
-    return [final_rules,MEMORYRules]
+    #print('Final Rules', final_rules)
+    return [final_rules, MEMORYRules]
 
 """
 ......................................................................
@@ -60,16 +54,18 @@ rulex maximum compression function
 rewritten as setRulex function
 ......................................................................
 """
+def setRulex(Presets, Rules, d, delete_every_iteration):
+    MEMORYpresets = read('MEMORYpresets.json'); print('MEMORYpresets : ',MEMORYpresets)
+    MEMORYRules = read('MEMORYRules.json');     print('MEMORYRules : ',MEMORYRules)
 
-def setRulex(Presets,Rules,d,delete_every_iteration):
-    MEMORYpresets = read('MEMORYpresets.json');print('MEMORYpresets : ',MEMORYpresets)
-    MEMORYRules = read('MEMORYRules.json');print('MEMORYRules : ',MEMORYRules)
-    
+    [MEMORYpresets.append(p) for p in Presets if p not in MEMORYpresets];writePresets('MEMORYpresets.json',MEMORYpresets) 
+    print('aqui aqui', MEMORYpresets) 
     if Rules!=[]:
         [Rules.append(r) for r in MEMORYRules] 
     else:
         Rules = MEMORYRules
 
+    print('Rules assigned form MEMORY RULES :  ', Rules)
     previousRules = []
     [rules,MEMORYRules] = rulex(Presets,Rules,d,delete_every_iteration,  MEMORYRules)
     cont = 0
@@ -78,15 +74,17 @@ def setRulex(Presets,Rules,d,delete_every_iteration):
         print('rules != previousRules',cont)
         previousRules = rules
         [rules,MEMORYRules] = rulex(Presets, previousRules, d, delete_every_iteration, MEMORYRules)
-    print('final set of rules: ',rules)
+    print('Final set of rules extracted with setRulex: ', rules)
     TEMPORAL=[]
     for r in MEMORYRules:
         if r not in TEMPORAL:
             TEMPORAL.append(r)
     MEMORYRules = TEMPORAL 
-    #write('MEMORYRules.json', MEMORYRules) #----------------------
-    print('memory rules :',   MEMORYRules)
+    write('MEMORYRules.json', MEMORYRules) #----------------------
+    print('MEMORYRules at the end of the algorithm :',   MEMORYRules)
     return rules
+
+clean(all)
 
 Rules = []
 Presets = [[1,2,'*'],[2,2,'*'],[1,3,'*']]
@@ -99,9 +97,8 @@ Presets = [[1,2,'*'],[2,2,'*'],[1,3,'*']]
 #        [7,4,'i']
 #        ]
 print('The Presets :  ', Presets)
-rules = setRulex(Presets, Rules, 1, False)
-
-print('.............   the end .........................')
+rules = setRulex(Presets, Rules, 1, False )
+print('.............  this is the end  .........................')
 
 
 
