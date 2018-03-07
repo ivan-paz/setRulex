@@ -3,6 +3,7 @@ from writeReadjson import read
 from writeReadjson import write
 from writeReadjson import clean
 from writeReadjson import writePresets
+from writeReadjson import readPresets
 def dictionary_of_categories(Presets, Rules):
     dictionary_of_classes = dict()
     for preset in Presets:
@@ -55,7 +56,7 @@ rewritten as setRulex function
 ......................................................................
 """
 def setRulex(Presets, Rules, d, delete_every_iteration):
-    MEMORYpresets = read('MEMORYpresets.json'); print('MEMORYpresets : ',MEMORYpresets)
+    MEMORYpresets = readPresets('MEMORYpresets.json'); print('MEMORYpresets : ',MEMORYpresets)
     MEMORYRules = read('MEMORYRules.json');     print('MEMORYRules : ',MEMORYRules)
 
     [MEMORYpresets.append(p) for p in Presets if p not in MEMORYpresets];writePresets('MEMORYpresets.json',MEMORYpresets) 
@@ -84,10 +85,13 @@ def setRulex(Presets, Rules, d, delete_every_iteration):
     print('MEMORYRules at the end of the algorithm :',   MEMORYRules)
     return rules
 
-clean(all)
 
+
+#clean(all)
 Rules = []
-Presets = [[1,2,'*'],[2,2,'*'],[1,3,'*']]
+#Presets = [[1,2,'*'],           [2,2,'*'], [1,3,'*']]
+Presets = [  [3,2,'*'], [1,4,'*']  ] 
+
 #Presets = [
 #        [2,5,'i'],
 #        [4,5,'i'],
