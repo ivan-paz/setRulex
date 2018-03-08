@@ -86,7 +86,6 @@ def setRulex(Presets, Rules, d, delete_every_iteration):
     return rules
 
 
-
 #clean(all)
 Rules = []
 #Presets = [[1,2,'*'],           [2,2,'*'], [1,3,'*']]
@@ -103,11 +102,6 @@ Presets = [  [3,2,'*'], [1,4,'*']  ]
 print('The Presets :  ', Presets)
 rules = setRulex(Presets, Rules, 1, False )
 print('.............  this is the end  .........................')
-
-
-
-
-
 
 
 
