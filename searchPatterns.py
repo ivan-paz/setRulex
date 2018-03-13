@@ -138,8 +138,12 @@ def search_patterns(presets_current_class, rules_current_class, presets_other_cl
         rules_current_class.append( rule_preset )#preset_into_rule(preset_copy)) # Lo moví de acuerdo con Enrique 20 Nov
         # DELETE D U P L I C A T E D
         rules_current_class=[ii for n,ii in enumerate(rules_current_class) if ii not in rules_current_class[:n]]
+
         if delete_redundant_every_iteration:
             deleteRedundant(rules_current_class)
+            for r in rules_current_class:
+                if r!=None:
+                    MEMORYRules.append(r)
     if not delete_redundant_every_iteration:
         for r in rules_current_class:
             if r!=None:

@@ -60,7 +60,7 @@ def setRulex(Presets, Rules, d, delete_every_iteration):
     MEMORYRules = read('MEMORYRules.json');     print('MEMORYRules : ',MEMORYRules)
 
     [MEMORYpresets.append(p) for p in Presets if p not in MEMORYpresets];writePresets('MEMORYpresets.json',MEMORYpresets) 
-    print('aqui aqui', MEMORYpresets) 
+    print('MEMORY PRESETS', MEMORYpresets) 
     if Rules!=[]:
         [Rules.append(r) for r in MEMORYRules] 
     else:
@@ -101,14 +101,18 @@ def setRulex(Presets, Rules, d, delete_every_iteration):
 #        ]
 
 #---------------------------------------------------------------------
-print('Example 1 paper fuzzyRulex')
+#print('Example 1 paper fuzzyRulex')
+#Rules = []
+#clean(all)
+#Presets = [[2,2,'coda'],[2,4,'coda']]
+#Presets = [[4,2,'coda']]
+#rules = setRulex(Presets, Rules, 1, True )
+#---------------------------------------------------------------------
+print('Example 1 with second order paper fuzzyRulex')
 Rules = []
-#Presets = [[1,2,'coda'],           [2,2,'coda'], [1,3,'coda']]
-#Presets = [  [3,2,'coda'], [1,4,'coda']  ] 
-
-#Presets = [  [3,2,'coda'], [1,4,'coda']  ] 
-Presets = [[1,2,'coda'],           [2,2,'coda'], [1,3,'coda']]
-
+#clean(all)
+#Presets = [[4,2,'coda'],[2,2,'coda']]
+Presets = [[2,4,'coda']] 
 rules = setRulex(Presets, Rules, 1, False )
 #---------------------------------------------------------------------
 
