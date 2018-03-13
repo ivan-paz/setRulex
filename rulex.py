@@ -101,19 +101,19 @@ def setRulex(Presets, Rules, d, delete_every_iteration):
 #        ]
 
 #---------------------------------------------------------------------
-#print('Example 1 paper fuzzyRulex')
-#Rules = []
-#clean(all)
-#Presets = [[2,2,'coda'],[2,4,'coda']]
-#Presets = [[4,2,'coda']]
-#rules = setRulex(Presets, Rules, 1, True )
-#---------------------------------------------------------------------
-print('Example 1 with second order paper fuzzyRulex')
+print('Example 1 paper fuzzyRulex')
 Rules = []
 #clean(all)
+#Presets = [[2,2,'coda'],[2,4,'coda']]
+Presets = [[4,2,'coda']]
+rules = setRulex(Presets, Rules, 1, True )
+#---------------------------------------------------------------------
+#print('Example 1 with second order paper fuzzyRulex')
+#Rules = []
+#clean(all)
 #Presets = [[4,2,'coda'],[2,2,'coda']]
-Presets = [[2,4,'coda']] 
-rules = setRulex(Presets, Rules, 1, False )
+#Presets = [[2,4,'coda']] 
+#rules = setRulex(Presets, Rules, 1, False )
 #---------------------------------------------------------------------
 
 
