@@ -60,12 +60,12 @@ def setRulex(Presets, Rules, d, delete_every_iteration):
     MEMORYRules = read('MEMORYRules.json');     print('MEMORYRules : ',MEMORYRules)
 
     [MEMORYpresets.append(p) for p in Presets if p not in MEMORYpresets];writePresets('MEMORYpresets.json',MEMORYpresets) 
-    print('MEMORY PRESETS', MEMORYpresets) 
-    if Rules!=[]:
-        [Rules.append(r) for r in MEMORYRules] 
-    else:
-        Rules = MEMORYRules
-
+    print('MEMORY PRESETS', MEMORYpresets)
+    [Rules.append(r) for r in MEMORYRules]#this line substitutes the abajo think
+    #if Rules!=[]:
+    #    [Rules.append(r) for r in MEMORYRules] 
+    #else:
+    #    Rules = MEMORYRules
     print('Rules assigned form MEMORY RULES :  ', Rules)
     previousRules = []
     [rules,MEMORYRules] = rulex(Presets,Rules,d,delete_every_iteration,  MEMORYRules)
