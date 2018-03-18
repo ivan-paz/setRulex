@@ -99,7 +99,6 @@ def setRulex(Presets, Rules, d, delete_every_iteration):
 #        [6,4,'i'],
 #        [7,4,'i']
 #        ]
-
 #---------------------------------------------------------------------
 print('Example 1 paper fuzzyRulex')
 Rules = []
