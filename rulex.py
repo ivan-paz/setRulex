@@ -1,7 +1,7 @@
 from searchPatterns import search_patterns
 from writeReadjson import read
 from writeReadjson import write
-from writeReadjson import clean
+#from writeReadjson import clean
 from writeReadjson import writePresets
 from writeReadjson import readPresets
 def dictionary_of_categories(Presets, Rules):
@@ -86,34 +86,34 @@ def setRulex(Presets, Rules, d, delete_every_iteration):
     return rules
 
 
-#clean(all) #clean MEMORY
+##clean(all) #clean MEMORY
+##Rules = []
+##Presets = [[1,2,'*'],           [2,2,'*'], [1,3,'*']]
+##Presets = [  [3,2,'*'], [1,4,'*']  ] 
+#
+##Presets = [
+##        [2,5,'i'],
+##        [4,5,'i'],
+##        [2,3,'i'],
+##        [4,3,'i'],
+##        [6,4,'i'],
+##        [7,4,'i']
+##        ]
+##---------------------------------------------------------------------
+#print('Example 1 paper fuzzyRulex')
 #Rules = []
-#Presets = [[1,2,'*'],           [2,2,'*'], [1,3,'*']]
-#Presets = [  [3,2,'*'], [1,4,'*']  ] 
-
-#Presets = [
-#        [2,5,'i'],
-#        [4,5,'i'],
-#        [2,3,'i'],
-#        [4,3,'i'],
-#        [6,4,'i'],
-#        [7,4,'i']
-#        ]
-#---------------------------------------------------------------------
-print('Example 1 paper fuzzyRulex')
-Rules = []
-#clean(all)
-#Presets = [[2,2,'coda'],[2,4,'coda']]
-Presets = [[4,2,'coda']]
-rules = setRulex(Presets, Rules, 1, True )
-#---------------------------------------------------------------------
-#print('Example 1 with second order paper fuzzyRulex')
-#Rules = []
-#clean(all)
-#Presets = [[4,2,'coda'],[2,2,'coda']]
-#Presets = [[2,4,'coda']] 
-#rules = setRulex(Presets, Rules, 1, False )
-#---------------------------------------------------------------------
+##clean(all)
+##Presets = [[2,2,'coda'],[2,4,'coda']]
+#Presets = [[4,2,'coda']]
+#rules = setRulex(Presets, Rules, 1, True )
+##---------------------------------------------------------------------
+##print('Example 1 with second order paper fuzzyRulex')
+##Rules = []
+##clean(all)
+##Presets = [[4,2,'coda'],[2,2,'coda']]
+##Presets = [[2,4,'coda']] 
+##rules = setRulex(Presets, Rules, 1, False )
+##---------------------------------------------------------------------
 
 
 
