@@ -203,9 +203,11 @@ from writeReadjson import clean
 #rules = setRulex(Presets, Rules, 1, False )
 #---------------------------------------------------------------------
 
-print('Experiments with the new distance')
+print('--------------------')
 clean(all)
-Presets = [[2,2,'a'],[2,4,'a'],[4,2,'a'],[4,3,'a']]
+Presets = [[2,2,'a'],[2,4,'a'],[4,2,'a'],[4,3,'a'],[1,1,'b'],[1,2,'b']]
+Presets = [[2,2,1,'a'],[2,4,1,'a'],[2,2,2,'a'],[2,3,2,'a'],[4,2,2,'a'],[4,3,2,'a']]
 Rules = []
-rules = setRulex(Presets, Rules, 1, False )
+#Rules = [[{2}, {2, 4}, 'A'], [{2, 4}, {2, 3}, 'A']]
+rules = setRulex(Presets, Rules, 2, False )
 
