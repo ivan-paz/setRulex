@@ -202,12 +202,12 @@ from writeReadjson import clean
 #Presets = [[2,4,'coda']]
 #rules = setRulex(Presets, Rules, 1, False )
 #---------------------------------------------------------------------
-
 print('--------------------')
 clean(all)
-Presets = [[2,2,'a'],[2,4,'a'],[4,2,'a'],[4,3,'a'],[1,1,'b'],[1,2,'b']]
+#Presets = [[2,2,'a'],[2,4,'a'],[4,2,'a'],[4,3,'a'],[1,1,'b'],[1,2,'b']]
+
 Presets = [[2,2,1,'a'],[2,4,1,'a'],[2,2,2,'a'],[2,3,2,'a'],[4,2,2,'a'],[4,3,2,'a']]
 Rules = []
-#Rules = [[{2}, {2, 4}, 'A'], [{2, 4}, {2, 3}, 'A']]
-rules = setRulex(Presets, Rules, 2, False )
+d = 1
+rules = setRulex(Presets, Rules, d, False )
 
