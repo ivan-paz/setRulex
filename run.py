@@ -202,12 +202,18 @@ from writeReadjson import clean
 #Presets = [[2,4,'coda']]
 #rules = setRulex(Presets, Rules, 1, False )
 #---------------------------------------------------------------------
-print('--------------------')
+print('--------------- Testing -------------')
 clean(all)
 #Presets = [[2,2,'a'],[2,4,'a'],[4,2,'a'],[4,3,'a'],[1,1,'b'],[1,2,'b']]
 
-Presets = [[2,2,1,'a'],[2,4,1,'a'],[2,2,2,'a'],[2,3,2,'a'],[4,2,2,'a'],[4,3,2,'a']]
-Rules = []
+#Presets = [[2,2,1,'a'],[2,4,1,'a'],[2,2,2,'a'],[2,3,2,'a'],[4,2,2,'a'],[4,3,2,'a']]
+#Presets = []
+
+#TEST 3 Breaking rulex
+#Rules = [[{1, 2}, {2, 3}, {2}, 'a'], [{1, 3}, {2, 4}, {2}, 'a']]
+Rules = [[{2}, {2, 4},'a'], [{4}, {2, 3}, 'a']]
+Presets = []
 d = 1
+#Rules = []
 rules = setRulex(Presets, Rules, d, False )
 
