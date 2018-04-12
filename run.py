@@ -210,10 +210,38 @@ clean(all)
 #Presets = []
 
 #TEST 3 Breaking rulex
+#print('Brbreaking the rulex')
 #Rules = [[{1, 2}, {2, 3}, {2}, 'a'], [{1, 3}, {2, 4}, {2}, 'a']]
-Rules = [[{2}, {2, 4},'a'], [{4}, {2, 3}, 'a']]
-Presets = []
-d = 1
-#Rules = []
+#Rules = [[{2}, {2, 4},'a'], [{4}, {2, 3}, 'a']]
+#Presets = []
+#Presets = [[2,2,'a'],[2,4,'a'],[4,2,'a'],[4,3,'a']]
+Presets = [[1,2,2,'a'],[1,3,2,'a'],[2,2,2,'a'],[2,3,2,'a'],[1,4,2,'a'],[3,2,2,'a'],[3,4,2,'a']]
+d = 2
+Rules = []
 rules = setRulex(Presets, Rules, d, False )
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
