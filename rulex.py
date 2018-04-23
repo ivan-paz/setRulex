@@ -179,19 +179,21 @@ def compressRules(Presets,previousRules,d,delete_every_iteration):
     dictionary = dictionary_of_categories(Presets,previousRules)
     for key in dictionary:
         [presets_other_classes,presets_current_class,rules_current_class] = separate_presets_and_rules_other_categories(key,dictionary)
-        print('rules current class',rules_current_class,len(rules_current_class))
+        print('rules current class',rules_current_class, len(rules_current_class))
+        temporalRules = [] #################################################
         for i in range(len(rules_current_class)):
             rule1 = rules_current_class[i]
-            for rule2 in setOfRules:
+            for rule2 in temporalRules:##############################setOfRules:
                 if rule2!=None: # to avoid comparison with None
                     [pattern,unions,indexes] = pattern_found(rule1,rule2,d)
                     if pattern:
                         rule = create_rule(rule1,unions,indexes,presets_other_classes,d)
                         print('created rule',rule)
-                        setOfRules.append(rule)
-                    setOfRules=[ii for n,ii in enumerate(setOfRules) if ii not in setOfRules[:n]]
-            setOfRules.append(rule1)
-        setOfRules = deleteRedundant(setOfRules)
+                        temporalRules.append(rule)######setOfRules.append(rule)
+                    temporalRules=[ii for n,ii in enumerate(temporalRules) if ii not in temporalRules[:n]]
+            temporalRules.append(rule1)
+        temporalRules = deleteRedundant(temporalRules)
+        [setOfRules.append(rule) for rule in temporalRules]
     setOfRules = [x for x in setOfRules if x is not None]
     return setOfRules
 
